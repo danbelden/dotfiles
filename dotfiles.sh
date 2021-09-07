@@ -6,7 +6,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # Config path vars
 CONFIG_DIRS=(
   "${SCRIPT_DIR}/aliases"
-  "${SCRIPT_DIR}/custom"
+  "${SCRIPT_DIR}/private"
 )
 
 # Import all config dir .sh files
