@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Helper vars
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# shellcheck disable=SC2164
+SCRIPT_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # Config path vars
 CONFIG_DIRS=(
@@ -13,8 +14,8 @@ CONFIG_DIRS=(
 for CONFIG_DIR in "${CONFIG_DIRS[@]}"; do
   if [ ! -d "$CONFIG_DIR" ]
   then
-      echo "Directory $CONFIG_DIR DOES NOT exist."
-      exit 1
+      echo "[Error] Directory $CONFIG_DIR DOES NOT exist."
+      continue
   fi
   NUM_FILES=$(find "$CONFIG_DIR" -name "*.sh" -prune -print | grep -c /)
   if [ "$NUM_FILES" -eq 0 ]
